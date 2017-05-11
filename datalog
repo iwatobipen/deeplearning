@@ -1,0 +1,137 @@
+Loading raw samples now.
+shard_size: 8192
+About to start loading CSV from ./bioactivity.csv
+Loading shard 1 of size 8192.
+Featurizing sample 0
+Featurizing sample 1000
+TIMING: featurizing shard 0 took 3.771 s
+TIMING: dataset construction took 7.028 s
+Loading dataset from disk.
+TIMING: dataset construction took 4.295 s
+Loading dataset from disk.
+TIMING: dataset construction took 2.431 s
+Loading dataset from disk.
+128
+Training for 30 epochs
+Starting epoch 0
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 1
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 2
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 3
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 4
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 5
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 6
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 7
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 8
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 9
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 10
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 11
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 12
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 13
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 14
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 15
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 16
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 17
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 18
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 19
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 20
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 21
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 22
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 23
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 24
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 25
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 26
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 27
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 28
+On batch 0
+On batch 50
+On batch 100
+Starting epoch 29
+On batch 0
+On batch 50
+On batch 100
+computed_metrics: [0.52744994044080606]
+{'graphconvreg': {'mean-pearson_r2_score': 0.52744994044080606}}
