@@ -1,0 +1,22 @@
+# IPython log file
+
+get_ipython().magic(u'logstart datapreprocess')
+import panda as pd
+import pandas as pd
+df = pd.read_table('jak3_chembl.txt', header=0
+)
+df.head(1)
+df['activity_class'] = pd.factorize( df.ACTIVITY_COMMENT )
+pd.factorize( df.ACTIVITY_COMMENT )
+pd.factorize( df.ACTIVITY_COMMENT ).shape
+len(pd.factorize( df.ACTIVITY_COMMENT ))
+len(pd.factorize( df.ACTIVITY_COMMENT[0
+] ))
+len(pd.factorize( df.ACTIVITY_COMMENT)[0]
+)
+df.shape
+df['activity_class'] = pd.factorize( df.ACTIVITY_COMMENT )[0]
+df.head(2)
+df.to_csv('./preprocessed_jak3.csv', index=False
+)
+exit()

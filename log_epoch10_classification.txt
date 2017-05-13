@@ -1,0 +1,46 @@
+Loading raw samples now.
+shard_size: 8192
+About to start loading CSV from ./preprocessed_jak3.csv
+Loading shard 1 of size 8192.
+Featurizing sample 0
+TIMING: featurizing shard 0 took 2.012 s
+TIMING: dataset construction took 3.744 s
+Loading dataset from disk.
+TIMING: dataset construction took 2.431 s
+Loading dataset from disk.
+TIMING: dataset construction took 1.230 s
+Loading dataset from disk.
+50
+Training for 10 epochs
+Starting epoch 0
+On batch 0
+On batch 50
+Starting epoch 1
+On batch 0
+On batch 50
+Starting epoch 2
+On batch 0
+On batch 50
+Starting epoch 3
+On batch 0
+On batch 50
+Starting epoch 4
+On batch 0
+On batch 50
+Starting epoch 5
+On batch 0
+On batch 50
+Starting epoch 6
+On batch 0
+On batch 50
+Starting epoch 7
+On batch 0
+On batch 50
+Starting epoch 8
+On batch 0
+On batch 50
+Starting epoch 9
+On batch 0
+On batch 50
+computed_metrics: [0.78734838162571097]
+{'graphconvreg': {'mean-roc_auc_score': 0.78734838162571097}}
