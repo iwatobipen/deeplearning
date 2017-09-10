@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/iwatobipen/develop/py35env/testfolder/tensorflowtest/mollog/projector/amodel.ckpt-128"
+all_model_checkpoint_paths: "/Users/iwatobipen/develop/py35env/testfolder/tensorflowtest/mollog/projector/amodel.ckpt-128"
