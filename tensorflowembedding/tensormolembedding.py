@@ -6,12 +6,7 @@ import os
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import DataStructs
-
-from sklearn.cross_validation import train_test_split
-from sklearn.cross_validation import cross_val_score
-from sklearn.cross_validation import KFold
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import r2_score
+from rdkit.Chem import Draw
 
 import tensorflow as tf
 from tensorflow.contrib.tensorboard.plugins import projector
@@ -32,7 +27,7 @@ def getResponse( mols, prop="ACTIVITY" ):
     for mol in mols:
         act = mol.GetProp( prop )
         act = 9. - np.log10( float( act ) )
-        if act >= 7:
+        if act >= 6:
             Y.append(np.asarray( [1,0] ))
         else:
             Y.append(np.asarray( [0,1] ))
@@ -52,6 +47,8 @@ def generate_embeddings():
     embed = config.embeddings.add()
     embed.tensor_name = 'embedding:0'
     embed.metadata_path = os.path.join( FLAGS.log_dir + '/projector/metadata.tsv' )
+    embed.sprite.image_path = os.path.join( FLAGS.data_dir + '/mols.png' )
+    embed.sprite.single_image_dim.extend( [100, 100] )
     projector.visualize_embeddings( writer, config )
     saver.save( sess, os.path.join(FLAGS.log_dir, 'projector/amodel.ckpt'), global_step=len(X) )
 def generate_metadata_file():
@@ -59,6 +56,7 @@ def generate_metadata_file():
     Y = getResponse( [ mol for mol in sdf ])
     def save_metadata( file ):
         with open( file, 'w' ) as f:
+            f.write('id\tactivity_class\n')
             for i in range( Y.shape[0] ):
                 c = np.nonzero( Y[i] )[0][0]
                 f.write( '{}\t{}\n'.format( i, c ))
@@ -75,32 +73,15 @@ def main(_):
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument( '--sdf', type=str )
-    parser.add_argument( '--log_dir', type=str, default='Fullpat/mollog' )
+    parser.add_argument( '--log_dir', type=str, default='/Users/iwatobipen/develop/py35env/testfolder/tensorflowtest/mollog' )
+    parser.add_argument( '--data_dir', type=str, default='/Users/iwatobipen/develop/py35env/testfolder/tensorflowtest/mollog')
+
     FLAGS, unparsed = parser.parse_known_args()
+    sdf = [ mol for mol in Chem.SDMolSupplier( FLAGS.sdf ) ]
+    im = Draw.MolsToGridImage( sdf, molsPerRow=10, subImgSize=( 100, 100 ))
+    im.save( os.path.join( FLAGS.data_dir + '/mols.png' ))
+ 
+    
     tf.app.run( main=main, argv=[sys.argv[0]] + unparsed )
 
 
-
-
-if __name__ == '__main__':
-    filename = sys.argv[1]
-    sdf = [ mol for mol in Chem.SDMolSupplier( filename ) ]
-    X = np.asarray(  getFpArr( sdf ))
-    #X = np.reshape( X, ( X.shape[0], 1, X.shape[1]))
-    Y = getResponse( sdf )
-
-    trainx, testx, trainy, testy = train_test_split( X, Y, test_size=0.2, random_state=0 )
-    trainx, testx, trainy, testy = np.asarray( trainx ), np.asarray( testx ), np.asarray( trainy ), np.asarray( testy )
-    model = base_model()
-    """
-    estimator = KerasRegressor( build_fn = base_model,
-                                nb_epoch=100,
-                                batch_size=50,
-                                 )
-    estimator.fit( trainx, trainy )
-    """
-    model.fit( trainx, trainy, validation_data=(testx,testy), callbacks=[tb_cb] )
-    pred_y = model.predict( testx )
-    r2 = r2_score( testy, pred_y )
-    rmse = mean_squared_error( testy, pred_y )
-    print( "KERAS: R2 : {0:f}, RMSE : {1:f}".format( r2, rmse ) )
